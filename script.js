@@ -95,7 +95,11 @@
     var self = this;
     function validatevCode() {}
     validatevCode.prototype.resolve = function() {
-      if (self.vCode.length != 6) {
+      if (self.vCode.length == "" && self.params.vCode.require) {
+        alert("验证码不能为空");
+        self.continue = false;
+        return;
+      } else if (self.vCode.length != 6) {
         alert("请输入6位数字验证码");
         self.continue = false;
         return;
